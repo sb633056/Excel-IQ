@@ -114,7 +114,7 @@ and SmartBrain features are released.
 
 <input type="hidden" name="source" value="Community Signup">
 
-<button class="primary">
+<button type="submit" class="primary">
 Join Excel-IQ
 </button>
 
@@ -134,12 +134,12 @@ fetch("https://script.google.com/macros/s/AKfycbxfT-bBKoGzI-NJcQa8TR4_mdE7GcZqED
 method: "POST",
 body: data
 })
-.then(res => res.text())
-.then(()=>{
+.then(() => {
 
-window.location.href="https://sb633056.github.io/Excel-IQ/success.html";
+window.location.href="/Excel-IQ/success.html";
 
-});
+})
+.catch(error => console.error("Error:", error));
 
 });
 
