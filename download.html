@@ -41,17 +41,14 @@ e.preventDefault();
 
 const data = new FormData(form);
 
-fetch("https://script.google.com/macros/s/AKfycbykBv2YQ5yIYwg8Jv155m8oYCTwMkLvuITLKIt5eiIr4YQ7nXtIAH7dkbrAJOzsaBnUIw/exec", {
+/* Send to Google Sheets */
+fetch("https://script.google.com/macros/s/AKfycbxfT-bBKoGzI-NJcQa8TR4_mdE7GcZqED91tAbFmi1OGS6g-qsn5MZLsf4p4vchnbKDSA/exec", {
 method: "POST",
 body: data
-})
-.then(response => response.text())
-.then(() => {
+});
 
+/* Instant redirect */
 window.location.href="/Excel-IQ/success.html";
-
-})
-.catch(err => console.error(err));
 
 });
 
