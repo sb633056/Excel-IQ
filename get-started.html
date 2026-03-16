@@ -130,19 +130,20 @@ e.preventDefault();
 
 const data = new FormData(form);
 
-fetch("https://script.google.com/macros/s/AKfycbxfT-bBKoGzI-NJcQa8TR4_mdE7GcZqED91tAbFmi1OGS6g-qsn5MZLsf4p4vchnbKDSA/exec", {
+fetch("https://script.google.com/macros/s/AKfycbykBv2YQ5yIYwg8Jv155m8oYCTwMkLvuITLKIt5eiIr4YQ7nXtIAH7dkbrAJOzsaBnUIw/exec", {
 method: "POST",
 body: data
 })
+.then(response => response.text())
 .then(() => {
 
 window.location.href="/Excel-IQ/success.html";
 
 })
-.catch(error => console.error("Error:", error));
+.catch(err => console.error(err));
 
 });
-
+  
 </script>
   
 </div>
