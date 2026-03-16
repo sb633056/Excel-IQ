@@ -129,20 +129,23 @@ form.addEventListener("submit", function(e){
 e.preventDefault();
 
 const data = new FormData(form);
+const params = new URLSearchParams(data);
 
-/* Send data to Google Sheets in background */
-fetch("https://script.google.com/macros/s/AKfycbxfT-bBKoGzI-NJcQa8TR4_mdE7GcZqED91tAbFmi1OGS6g-qsn5MZLsf4p4vchnbKDSA/exec", {
-method: "POST",
-body: data
-});
+navigator.sendBeacon(
+"https://script.google.com/macros/s/AKfycbxfT-bBKoGzI-NJcQa8TR4_mdE7GcZqED91tAbFmi1OGS6g-qsn5MZLsf4p4vchnbKDSA/exec",
+params
+);
 
-/* Immediately redirect user */
+/* small delay so mobile browsers send the request */
+setTimeout(function(){
+
 window.location.href="/Excel-IQ/success.html";
 
+}, 350);
+
 });
 
-</script>
-  
+</script>  
 </div>
 
 </section>
