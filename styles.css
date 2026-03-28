@@ -798,6 +798,11 @@ color:#6b7280;
 color:#22C55E;
 }
 
+.template-card:first-child {
+border: 2px solid #000;
+}
+
+
 @media (max-width:900px){
 
 .hero{
