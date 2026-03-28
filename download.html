@@ -3,7 +3,7 @@
 
 <head>
 
-<title>Download Excel Starter Kit</title>
+<title>Download | Excel-IQ</title>
 <link rel="icon" type="image/png" href="images/logo.png">
 <link rel="stylesheet" href="styles.css">
 
@@ -13,9 +13,9 @@
 
 <section class="download-page">
 
-<h2>Get the Excel Starter Kit</h2>
+<h2 id="title">Get Your Download</h2>
 
-<p>Enter your details to download the kit.</p>
+<p id="subtitle">Enter your details to continue.</p>
 
 <form id="download-form">
 
@@ -23,41 +23,13 @@
 
 <input type="email" name="email" placeholder="Your Email" required>
 
-<input type="hidden" name="source" value="Ebook Download">
+<input type="hidden" name="source" id="source">
 
-<button type="submit" class="primary">
-Download Starter Kit
+<button type="submit" class="primary" id="download-btn">
+Download
 </button>
 
 </form>
-
-<script>
-
-const form = document.getElementById("download-form");
-
-form.addEventListener("submit", function(e){
-
-e.preventDefault();
-
-const data = new FormData(form);
-
-const params = new URLSearchParams(data);
-
-navigator.sendBeacon(
-"https://script.google.com/macros/s/AKfycbxfT-bBKoGzI-NJcQa8TR4_mdE7GcZqED91tAbFmi1OGS6g-qsn5MZLsf4p4vchnbKDSA/exec",
-params
-);
-
-/* small delay so mobile browsers send the request */
-setTimeout(function(){
-
-window.location.href="/Excel-IQ/success.html";
-
-}, 350);
-
-});
-
-</script>
 
 <p style="font-size:14px; color:#666;">
 We respect your privacy. Your email will only be used to send Excel learning resources.
@@ -65,7 +37,68 @@ We respect your privacy. Your email will only be used to send Excel learning res
 
 </section>
 
+<script>
 
+// 👉 Get product from URL
+const params = new URLSearchParams(window.location.search);
+const product = params.get("product");
+
+// 👉 Elements
+const title = document.getElementById("title");
+const subtitle = document.getElementById("subtitle");
+const sourceInput = document.getElementById("source");
+const button = document.getElementById("download-btn");
+
+// 👉 Default = Ebook
+let source = "Ebook Download";
+
+// 👉 Dynamic Content
+if(product === "finance-dashboard"){
+    
+    title.innerText = "Download Finance Dashboard";
+    subtitle.innerText = "Get your Excel Finance Intelligence Dashboard.";
+    button.innerText = "Download Dashboard";
+    source = "Finance Dashboard Download";
+
+} else {
+    
+    title.innerText = "Download Excel Starter Kit";
+    subtitle.innerText = "Get started with Excel dashboards and tools.";
+    button.innerText = "Download Starter Kit";
+    source = "Ebook Download";
+
+}
+
+// 👉 Set source
+sourceInput.value = source;
+
+
+// 👉 Form Submit
+const form = document.getElementById("download-form");
+
+form.addEventListener("submit", function(e){
+
+e.preventDefault();
+
+const data = new FormData(form);
+const params = new URLSearchParams(data);
+
+// Send to Google Sheets
+navigator.sendBeacon(
+"https://script.google.com/macros/s/AKfycbxfT-bBKoGzI-NJcQa8TR4_mdE7GcZqED91tAbFmi1OGS6g-qsn5MZLsf4p4vchnbKDSA/exec",
+params
+);
+
+// Redirect WITH product info
+setTimeout(function(){
+
+window.location.href = "/Excel-IQ/success.html?product=" + (product || "ebook");
+
+}, 350);
+
+});
+
+</script>
 
 </body>
 
