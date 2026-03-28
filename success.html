@@ -9,35 +9,34 @@
 
 </head>
 
-
 <body>
 
 <section class="success-page">
 
 <div class="container">
 
-<h1>Your Excel Starter Kit is Ready 🎉</h1>
+<h1 id="title">Your Download is Ready 🎉</h1>
 
-<p>
+<p id="subtitle">
 Thank you for signing up. Your download is ready below.
 </p>
 
-<a class="primary" href="https://drive.google.com/uc?export=download&id=13VNU84xbGqR7esNAui6imO9T1J3qxw-z" download>
-Download the Excel Starter Kit
+<a id="download-btn" class="primary" href="#">
+Download
 </a>
 
 
-<div class="next-steps">
+<div class="next-steps" id="next-steps">
 
 <h3>How to Get Started</h3>
 
-<ul>
+<ul id="steps">
 <li>✔ Start with Chapter 1 of the ebook</li>
 <li>✔ Open the practice files for each chapter</li>
 <li>✔ Build your first Excel dashboard</li>
 </ul>
 
-<p>
+<p id="extra-text">
 Once you're comfortable with Excel, explore
 <strong>SmartBrain AI</strong> to analyze business data automatically.
 </p>
@@ -51,6 +50,53 @@ Explore SmartBrain AI
 </div>
 
 </section>
+
+<script>
+
+// 👉 Get product from URL
+const params = new URLSearchParams(window.location.search);
+const product = params.get("product");
+
+// 👉 Elements
+const title = document.getElementById("title");
+const subtitle = document.getElementById("subtitle");
+const btn = document.getElementById("download-btn");
+const steps = document.getElementById("steps");
+const extra = document.getElementById("extra-text");
+
+// 👉 LINKS (PUT YOUR LINKS HERE)
+const DASHBOARD_LINK = "YOUR_DASHBOARD_LINK";
+const EBOOK_LINK = "https://drive.google.com/uc?export=download&id=13VNU84xbGqR7esNAui6imO9T1J3qxw-z";
+
+// 👉 Finance Dashboard
+if(product === "finance-dashboard"){
+
+    title.innerText = "Your Finance Dashboard is Ready 🚀";
+    subtitle.innerText = "Start exploring your income, expenses, and savings insights.";
+
+    btn.href = DASHBOARD_LINK;
+    btn.innerText = "Download Finance Dashboard";
+
+    steps.innerHTML = `
+    <li>✔ Enter your transactions</li>
+    <li>✔ Use filters to explore insights</li>
+    <li>✔ Track savings and spending trends</li>
+    `;
+
+    extra.innerText = "Use the dashboard regularly to build better financial awareness.";
+
+// 👉 Default = Ebook
+} else {
+
+    title.innerText = "Your Excel Starter Kit is Ready 🎉";
+    subtitle.innerText = "Thank you for signing up. Your download is ready below.";
+
+    btn.href = EBOOK_LINK;
+    btn.innerText = "Download the Excel Starter Kit";
+
+}
+
+</script>
 
 </body>
 
